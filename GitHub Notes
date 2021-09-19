@@ -1,0 +1,229 @@
+
+Git:-->>>
+Git is Free open src Version control System...
+Git is a toll track changes over time...
+GitHub is website whr we host over all repositories...
+
+
+below cmd to see hiddens files...
+>>ls -la
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CASE 1: 
+Clone down a repo from GitHub to local, make changes & push updated repo back to github only on Master branch....
+
+Clone down a folder from GitHub to VScode.
+	>>git clone url_here
+	->url is from GitHub account Clone & Download - Clone with SSH. 
+	
+	>>cd repository_name
+	->you will see git:(master) smthg like this & there is hidden folder- ".git" , check with ls -la command. 
+	
+	->make changes in file & created random HTML file: 
+	>>git status
+	->Shows all files created/deleted/updated but git yet dont knw so use add command...
+	
+	>>git add .
+	-> dot means track all files listed here...
+	
+	Now we are going to commit changes locally...
+	>>git commit -m "title here - updated file etc" -m "some description here" 
+	->-m is same thing like web interface: subject box & description box while commiting changes...
+	
+==> Till here we have saved out code locally only...
+
+- Now we will use push cmd to make new project code live on github.
+
+We have to generate public & private key to connect github to local system.
+pub key will be uploaded to github & private key(from local system) will be used to connect. 
+Its mathematical proof that only priv key could have genearte pub key. 
+
+--copy pub key from local & paste it to Github -> Settings -> SSH & GPG Keys -> Add new
+
+--After this there are certain cmd needs to be fired on local system :
+https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+>>git push origin master 
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CASE 2: 
+Create local folder first, make changes & then push to github (which completely newer for github)...
+--create a random folder, file 
+
+Use below cmd to initialization:
+>>git init
+--after this cmd you will see (git:master) on terminal & hidden file will be there ...
+
+>>git status
+--will show untracked file...
+
+>>git add filename.txt
+--changes commited 
+
+>>git commit -m "smth" -m ""
+
+Now lets try to push it to repo using cmd
+>>git push origin master
+--It will gve fatal error as no repo already exists on github bcz we did not clonned down it from github, we created it locally...
+
+So now simple way to push it is, create same named as local repo on gitub. Then,copy SSH from github and use cmd to push:
+>>git remote add origin copied/url.git
+
+it shows any remote repo that we are connected to current repo.
+>>git remote -v
+
+Now we can push it. we can use "git push origin master" but by setting upstream ("git push -u origin master") we can use only "git push" cmd so that it will bydefault pushed to that repo only..
+>>git push -u origin master
+Now in future "git push" will only req. 
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##Branching:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+1. Master 
+2. Feature 
+3. Hot Fix Branch
+
+C:\Users\sp250123\Desktop\git>git branch
+* master
+
+>>git checkout -b feature-readme-new-branch
+--new branch created
+
+now check ">>git branch", you will see two branches & *on newy created brach... 
+
+now, use below cmd to change branch...
+>>git checkout feature-readme-new-branch
+>>git chekout master
+--------------------------------------------------------------------------------------------------------------
+CASE 1:
+Created feature brnch -> files. 
+now, >>git checkout feature-readme-new-branch
+&& perform some file level changes LOCALLY, add row etc...
+
+confirm changes by status cmd. 
+>>git status
+
+>>git add file.txt
+>>git commit -m "Modified"
+
+Now lets merge that branch to Master...
+>>git checkout master
+
+Before merging,
+on GitHub UI, red backgrd color with minus means - row deleted, green backgrd with plus sign means added row...But we are still on local only...
+Similarly, (git diff branch_name) so basically this will compare branch_paramtr & currently selected branch... 
+>>git diff feature-readme-new-branch
+will show text not present on master branch.,,,
+
+Now we can merge these by using "git merge branch_name" but will follow this way: pushing these changes to feature brnch on GitHub & then making PR.
+>>git status
+
+>>git push 
+->it will give fatal error (recommanding: "git push --set-upstream origin feature_branch") bcz it dont know upstream...
+
+we can use "-u" instead "--set-upstream"...
+So now, push local chnges from new feature branch to git hub,,"git push -u origin feature-readme-new-branch" 
+
+Now we had made a "PR" feature to master. Now goto github and check out: There will be push req (compare & Pull Request) option created. 
+Click on it, add comments  "Create Pull Req". 
+-We can explore chnages made in "Files Changes", we can comment on each line. Then resolve conversation & finally "Merge Pull Request".
+
+Now, goto local and checkout master brach, you will not see changes as we did it on Github only, not locally. So di it on local by "git pull"
+
+Now delete brach that are merged in Master.
+>git branch -d feature-readme-new-branch
+
+======================================================================
+CASE 2:
+Merge Conflicts:
+Multiple merging on Master at same time....
+
+Create a test branch -> make changes in file..
+
+>>git commit -am ""
+This -am = add + Msg, works only for modified files not for newly created files... 
+
+Now chnage to "Master branch" and update same line 2 in file. 
+
+Now, 
+>>git checkout test_branch
+--> it will give an error: commit ur changes first or Stash them before switching branches....
+
+Lets commit to Master
+>>git commit -am "changes added"
+
+Now we will be able to checkout to test_branch. 
+>>git checkout test_branch
+>>git diff master
+
+--This is not regular way to merge it on locally but we use this way to keep master updated on local as multiple ppl are updating Master & we must be up to date.
+>>git merge master
+This will give an conflict error. We can fix it by vewing code on code editor or on Terminal. 
+Deleted extra rows added by Gitub in code on code editor...
+Now commit 
+>>git commit -am "updated in master"
+
+
+
+what is upstream?
+
+Stashing? -> 
+Stash your changed some where and retrive later but not get commit to git. 
+temporary holding place, to retrive changes 
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##UNDOing in Git:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+1.Undo saved changes:
+
+>>git checkout test_branch
+
+make changes in file & save it...
+
+>>git status
+>>git add file.txt
+
+Now revert changes:
+>>git reset <file_name optional paramtr>
+
+---------------------------
+
+2. Undo Commit:
+
+>>git checkout test_branch
+
+make changes in file & save it...
+>>git status
+>>git add file.txt
+>>git commit -m "txtx"
+>>git status
+
+>>git reset HEAD~1
+:head reset to one commit back...
+
+>>git log
+You will see all commits with hash keys... You can go back to any change using this hash key...
+e.g.:
+>>git reset 124555jannbe 
+
+>>git reset --hard 123lsj098nsd
+This command will completely remove all changes & header will come to that particular.
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##FORKing Git:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Basically clone somebody else's repo, make changes in it and the PR in original repo.
+
+######### END #################### 
