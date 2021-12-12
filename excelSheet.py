@@ -6,15 +6,15 @@
 
 
 # (1)    Append data to existng EXCEl SHEET ....
-"""from openpyxl import load_workbook
+from openpyxl import load_workbook
 workbook = load_workbook(filename="hello_world.xlsx")
 sheet = workbook.active
 data = [(99,99),(111,111),(3333,333),(444,444)]
 for row in data:
     sheet.append(row)
 workbook.save(filename="hello_world.xlsx")
-"""
 
-print("I am Python Script on GitHub....!!!!!")
+
+
 
 
