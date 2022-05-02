@@ -88,7 +88,7 @@ Now in future "git push" will only req.
 2. Feature 
 3. Hot Fix Branch
 
-C:\Users\sp250123\Desktop\git>git branch
+C:\Users\*\Desktop\git>git branch
 * master
 
 >>git checkout -b feature-readme-new-branch
