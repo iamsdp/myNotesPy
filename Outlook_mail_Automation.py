@@ -12,6 +12,6 @@ def Emailer(text, subject, recipient):
     mail.save()
 
 text = "<h1>Zoke!</h1>"   #You can pass HTML code here
-Emailer(text,'lets see','Saurabh.Patil@Teradata.com')
+Emailer(text,'lets see','Saurabh.Patil@gmail.com')
 
 # try : mail.Display(True)
