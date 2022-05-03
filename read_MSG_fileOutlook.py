@@ -1,7 +1,7 @@
 import extract_msg
 
-p = 'C:/Users/sp250123/Desktop/CBA Python/scheduled autosupport (BARBWDD1.localdomain) .msg'
-f = r'C:/Users/sp250123/Desktop/CBA Python/scheduled autosupport (BARBWDD1.localdomain) .msg'  # Replace with yours
+p = 'C:/Users/*/Desktop/CBA Python/scheduled autosupport (BARBWDD1.localdomain) .msg'
+f = r'C:/Users/*/Desktop/CBA Python/scheduled autosupport (BARBWDD1.localdomain) .msg'  # Replace with yours
 
 msg = extract_msg.Message(f)
 msg_sender = msg.sender
