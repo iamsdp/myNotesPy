@@ -33,13 +33,13 @@ def create_folder_files():
     os.mkdir(path)
 
     # Create BTEQ folder:
-    path_bteq = os.path.join(path,"Bteq")
+    path_bteq = os.path.join(path,"Sample")
     os.mkdir(path_bteq)
 
     # Create deploy.conf
-    deploy_path = os.path.join(path,"deploy.conf")
+    deploy_path = os.path.join(path,"xyz.txt")
     with open(deploy_path,'w') as fp:
-        x = """Bteq\nscript.txt"""
+        x = """Sample/xyz.txt"""
         fp.write(x)
     
     # Create file inside Bteq folder
